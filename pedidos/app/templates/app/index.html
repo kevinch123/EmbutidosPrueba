@@ -11,37 +11,37 @@
 
     <main class="container-fluid">
         <div class="row my-5">
-            <h1 class="col text-center">Crea tus recetas de embutidos aqui</h1>
+            <h1 class="col text-center">Crea tus recetas de embutidos aquí</h1>
         </div>
         <div class="row justify-content-center py-5">
 
             <div class="col-6 row justify-content-center h-50 p-5">
                 {% if update %}
-                <form class="w-75" method="post" action={% url "update" %}>
+                <form class="w-75" method="post" action="{% url 'update' %}">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="subject" class="form-label">Nombre</label>
-                        <input type="text" value="{{ update.subject }}" class="form-control" name="subject" id="subject" aria-describedby="emailHelp">
+                        <input type="text" value="{{ update.subject }}" class="form-control" name="subject" id="subject">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descripcion</label>
-                        <textarea type="text" name="description" class="form-control" id="description">{{ update.description }}</textarea>
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea name="description" class="form-control" id="description">{{ update.description }}</textarea>
                     </div>
-                    <input type="hidden" name="id" value="{{ update.id }}" />
-                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                    <input type="hidden" name="id" value="{{ update.id }}">
+                    <button type="submit" class="btn btn-primary w-100">Actualizar</button>
                 </form>
                 {% else %}
-                <form class="w-75" method="post" action={% url "insert" %}>
+                <form class="w-75" method="post" action="{% url 'insert' %}">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="subject" class="form-label">Subject</label>
-                        <input type="text" class="form-control" name="subject" id="subject" aria-describedby="emailHelp">
+                        <label for="subject" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="subject" id="subject">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea type="text" name="description" class="form-control" id="description"></textarea>
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea name="description" class="form-control" id="description"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success w-100">Add</button>
+                    <button type="submit" class="btn btn-success w-100">Agregar</button>
                 </form>
                 {% endif %}
             </div>
@@ -53,8 +53,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ data.subject }}</h5>
                         <p class="card-text">{{ data.description }}</p>
-                        <a href={% url "update_form" data.id %} class="btn btn-primary">Update</a>
-                        <a href={% url "delete" data.id %} class="btn btn-danger">Delete</a>
+                        <a href="{% url 'update_form' data.id %}" class="btn btn-primary">Actualizar</a>
+                        <a href="{% url 'delete' data.id %}" class="btn btn-danger">Eliminar</a>
                     </div>
                 </div>
                 </div>

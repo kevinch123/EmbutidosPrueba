@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-szzn%b35b904=!(t(e=h$^h0s2rs0jruwzj60d3_*8uaqmd8qc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','embutidosprueba.azurewebsites.net']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'embutidosprueba.azurewebsites.net']
 
+# Add the trusted origin for CSRF
+CSRF_TRUSTED_ORIGINS = ['https://embutidosprueba.azurewebsites.net']
 
 # Application definition
 
@@ -76,8 +78,15 @@ WSGI_APPLICATION = 'pedidos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pruebaBd',
+        'USER': 'kevinchi78',
+        'PASSWORD': 'f31cpltm#',
+        'HOST': 'bdprueba.postgres.database.azure.com',  # O la IP del servidor de tu base de datos
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require'
+        },
     }
 }
 
